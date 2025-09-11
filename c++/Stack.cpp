@@ -1,106 +1,97 @@
 #include <iostream>
 using namespace std;
 
-class Stack{
+class Stack {
 
-    private:
-        int arr[100],top,maxSize=100;
+private:
+    int arr[100], top, maxSize = 100;
 
-    public:
-        Stack(int size){
-            if(size > 100) {
-                cout << "Size is large!";
-                exit(0);
-                
-            } else {
-                maxSize = size;
-            }
-            top = -1;
+public:
+    Stack(int size) {
+        if (size > 100) {
+            cout << "Size is large!";
+            exit(0);
         }
-
-        bool isEmpty(){
-            if(top == -1){
-                return true;
-            }
-            else{
-                return false;
-            }
+        else {
+            maxSize = size;
         }
+        top = -1;
+    }
 
-        bool isFull(){
-            if(top == maxSize - 1){
-                return true;
-            } else{
-                return false;
-            }
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    bool isFull() {
+        return top == maxSize - 1;
+    }
+
+    void push(int value) {
+        if (isFull()) {
+            cout << "The stack is full! Cannot add elements" << endl;
         }
-
-        void push(int value){
-            if(isFull()){
-                cout << "The stack is full! Cannot add elements";
-            }else{
-                arr[++top] = value;
-                cout << value << " pushed to stack" << endl;
-            }
+        else {
+            arr[++top] = value;
+            cout << value << " pushed to stack" << endl;
         }
+    }
 
-        void pop(int value){
-            if(isEmpty()){
-                cout << "Stack is empty! Cannot remove elements";
-            } else{
-                arr[top--] = value;
-                cout << value << " removed from the stack" << endl;
-            }
-
+    void pop() {
+        if (isEmpty()) {
+            cout << "Stack is empty! Cannot remove elements" << endl;
         }
-
-        void display(){
-            if(isEmpty()){
-                cout << "Stack is empty!";
-            }else{
-                cout << "Stack contents: ";
-                for(int i=0;i<=top;i++){
-                    cout << arr[i] << " ";
-                }
-                cout << endl;
-            }
+        else {
+            cout << arr[top--] << " removed from the stack" << endl;
         }
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Stack is empty!" << endl;
+        }
+        else {
+            cout << "Stack contents: ";
+            for (int i = 0; i <= top; i++) {
+                cout << arr[i] << " ";
+            }
+            cout << endl;
+        }
+    }
 };
 
-int main(){
+int main() {
     int size;
-    cout << "Enter stack size (max 100) ";
+    cout << "Enter stack size (max 100): ";
     cin >> size;
 
     Stack s(size);
-    int choice,value;
+    int choice, value;
 
-    do
-    {
+    do {
         cout << "\nChoose an option:\n1. Push\n2. Pop\n3. Display\n4. Exit\nEnter choice: ";
         cin >> choice;
 
-        switch(choice){
-            case 1: 
+        switch (choice) {
+        case 1:
             cout << "Enter value to push: ";
             cin >> value;
             s.push(value);
             break;
 
-            case 2:
-            s.pop(value);
+        case 2:
+            s.pop();
             break;
 
-            case 3:
+        case 3:
             s.display();
             break;
 
-            case 4:
-            cout << "Exit";
+        case 4:
+            cout << "Exit" << endl;
+            return 0;  // Exit the program
 
-            default:
-            cout << "Invalid choice!";
+        default:
+            cout << "Invalid choice!" << endl;
         }
     } while (true);
-    
 }
