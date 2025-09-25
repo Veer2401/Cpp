@@ -6,7 +6,7 @@ struct Book{
     string title,author;
 };
 
-void linearSearch(Book books[],int n,string author){
+int linearSearch(Book books[],int n,string author){
     bool found = false;
     cout << "\nSearching for books.." << endl;
     for(int i=0;i<n;i++){
